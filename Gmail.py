@@ -5,11 +5,17 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+import Connection as dbCon
+from pymongo import MongoClient
+
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 
-class Gmail:
+# class Gmail:
+
+conn = dbCon.Connection('mail-to-sms')
+print(conn.find_all('connection'))
 
 
 def main():
@@ -35,19 +41,20 @@ def main():
         with open('token.pickle', 'wb') as token:
             pickle.dump(creds, token)
 
-    service = build('gmail', 'v1', credentials=creds)
+    # service = build('gmail', 'v1', credentials=creds)
 
     # Call the Gmail API
-    results = service.users().labels().list(userId='me').execute()
-    labels = results.get('labels', [])
+    # results = service.users().labels().list(userId='me').execute()
+    # labels = results.get('labels', [])
 
-    if not labels:
-        print('No labels found.')
-    else:
-        print('Labels:')
-        for label in labels:
-            print(label['name'])
+    # # if not labels:
+    # #     print('No labels found.')
+    # # else:
+    # #     print('Labels:')
+    # #     for label in labels:
+    # #         print(label['name'])
 
 
 if __name__ == '__main__':
     main()
+    # conn = dbCon.Connection('mail-to-sms');
