@@ -19,7 +19,7 @@ print(conn.find_all('connection'))
 
 
 def main():
+# Main method goes here
 
 if __name__ == '__main__':
     main()
-    # conn = dbCon.Connection('mail-to-sms');
